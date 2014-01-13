@@ -1,5 +1,5 @@
 //
-//  YSViewController.h
+//  YSDetailViewController.h
 //  YSRosterApp
 //
 //  Created by Yair Szarf on 1/13/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YSViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface YSDetailViewController : UIViewController
 @property (strong, nonatomic) NSString * selectedPerson;
 
 @end

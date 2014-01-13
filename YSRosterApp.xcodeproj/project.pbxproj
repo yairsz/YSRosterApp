@@ -22,6 +22,7 @@
 		B0E93D8618848990006829B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6518848990006829B1 /* UIKit.framework */; };
 		B0E93D8E18848990006829B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0E93D8C18848990006829B1 /* InfoPlist.strings */; };
 		B0E93D9018848990006829B1 /* YSRosterAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E93D8F18848990006829B1 /* YSRosterAppTests.m */; };
+		B0E93D9B18849899006829B1 /* YSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E93D9A18849899006829B1 /* YSDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		B0E93D8B18848990006829B1 /* YSRosterAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YSRosterAppTests-Info.plist"; sourceTree = "<group>"; };
 		B0E93D8D18848990006829B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B0E93D8F18848990006829B1 /* YSRosterAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSRosterAppTests.m; sourceTree = "<group>"; };
+		B0E93D9918849899006829B1 /* YSDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSDetailViewController.h; sourceTree = "<group>"; };
+		B0E93D9A18849899006829B1 /* YSDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				B0E93D7618848990006829B1 /* Main_iPad.storyboard */,
 				B0E93D7918848990006829B1 /* YSViewController.h */,
 				B0E93D7A18848990006829B1 /* YSViewController.m */,
+				B0E93D9918849899006829B1 /* YSDetailViewController.h */,
+				B0E93D9A18849899006829B1 /* YSDetailViewController.m */,
 				B0E93D7C18848990006829B1 /* Images.xcassets */,
 				B0E93D6818848990006829B1 /* Supporting Files */,
 			);
@@ -255,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0E93D7B18848990006829B1 /* YSViewController.m in Sources */,
+				B0E93D9B18849899006829B1 /* YSDetailViewController.m in Sources */,
 				B0E93D7218848990006829B1 /* YSAppDelegate.m in Sources */,
 				B0E93D6E18848990006829B1 /* main.m in Sources */,
 			);
