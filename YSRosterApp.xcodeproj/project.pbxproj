@@ -1,0 +1,490 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B0E93D6218848990006829B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6118848990006829B1 /* Foundation.framework */; };
+		B0E93D6418848990006829B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6318848990006829B1 /* CoreGraphics.framework */; };
+		B0E93D6618848990006829B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6518848990006829B1 /* UIKit.framework */; };
+		B0E93D6C18848990006829B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0E93D6A18848990006829B1 /* InfoPlist.strings */; };
+		B0E93D6E18848990006829B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E93D6D18848990006829B1 /* main.m */; };
+		B0E93D7218848990006829B1 /* YSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E93D7118848990006829B1 /* YSAppDelegate.m */; };
+		B0E93D7518848990006829B1 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E93D7318848990006829B1 /* Main_iPhone.storyboard */; };
+		B0E93D7818848990006829B1 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E93D7618848990006829B1 /* Main_iPad.storyboard */; };
+		B0E93D7B18848990006829B1 /* YSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E93D7A18848990006829B1 /* YSViewController.m */; };
+		B0E93D7D18848990006829B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0E93D7C18848990006829B1 /* Images.xcassets */; };
+		B0E93D8418848990006829B1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D8318848990006829B1 /* XCTest.framework */; };
+		B0E93D8518848990006829B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6118848990006829B1 /* Foundation.framework */; };
+		B0E93D8618848990006829B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6518848990006829B1 /* UIKit.framework */; };
+		B0E93D8E18848990006829B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0E93D8C18848990006829B1 /* InfoPlist.strings */; };
+		B0E93D9018848990006829B1 /* YSRosterAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E93D8F18848990006829B1 /* YSRosterAppTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B0E93D8718848990006829B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B0E93D561884898F006829B1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B0E93D5D18848990006829B1;
+			remoteInfo = YSRosterApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B0E93D5E18848990006829B1 /* YSRosterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSRosterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0E93D6118848990006829B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B0E93D6318848990006829B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B0E93D6518848990006829B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B0E93D6918848990006829B1 /* YSRosterApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YSRosterApp-Info.plist"; sourceTree = "<group>"; };
+		B0E93D6B18848990006829B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B0E93D6D18848990006829B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B0E93D6F18848990006829B1 /* YSRosterApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YSRosterApp-Prefix.pch"; sourceTree = "<group>"; };
+		B0E93D7018848990006829B1 /* YSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSAppDelegate.h; sourceTree = "<group>"; };
+		B0E93D7118848990006829B1 /* YSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSAppDelegate.m; sourceTree = "<group>"; };
+		B0E93D7418848990006829B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		B0E93D7718848990006829B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		B0E93D7918848990006829B1 /* YSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSViewController.h; sourceTree = "<group>"; };
+		B0E93D7A18848990006829B1 /* YSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSViewController.m; sourceTree = "<group>"; };
+		B0E93D7C18848990006829B1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B0E93D8218848990006829B1 /* YSRosterAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YSRosterAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0E93D8318848990006829B1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B0E93D8B18848990006829B1 /* YSRosterAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YSRosterAppTests-Info.plist"; sourceTree = "<group>"; };
+		B0E93D8D18848990006829B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B0E93D8F18848990006829B1 /* YSRosterAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSRosterAppTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B0E93D5B18848990006829B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0E93D6418848990006829B1 /* CoreGraphics.framework in Frameworks */,
+				B0E93D6618848990006829B1 /* UIKit.framework in Frameworks */,
+				B0E93D6218848990006829B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0E93D7F18848990006829B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0E93D8418848990006829B1 /* XCTest.framework in Frameworks */,
+				B0E93D8618848990006829B1 /* UIKit.framework in Frameworks */,
+				B0E93D8518848990006829B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B0E93D551884898F006829B1 = {
+			isa = PBXGroup;
+			children = (
+				B0E93D6718848990006829B1 /* YSRosterApp */,
+				B0E93D8918848990006829B1 /* YSRosterAppTests */,
+				B0E93D6018848990006829B1 /* Frameworks */,
+				B0E93D5F18848990006829B1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B0E93D5F18848990006829B1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B0E93D5E18848990006829B1 /* YSRosterApp.app */,
+				B0E93D8218848990006829B1 /* YSRosterAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B0E93D6018848990006829B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B0E93D6118848990006829B1 /* Foundation.framework */,
+				B0E93D6318848990006829B1 /* CoreGraphics.framework */,
+				B0E93D6518848990006829B1 /* UIKit.framework */,
+				B0E93D8318848990006829B1 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B0E93D6718848990006829B1 /* YSRosterApp */ = {
+			isa = PBXGroup;
+			children = (
+				B0E93D7018848990006829B1 /* YSAppDelegate.h */,
+				B0E93D7118848990006829B1 /* YSAppDelegate.m */,
+				B0E93D7318848990006829B1 /* Main_iPhone.storyboard */,
+				B0E93D7618848990006829B1 /* Main_iPad.storyboard */,
+				B0E93D7918848990006829B1 /* YSViewController.h */,
+				B0E93D7A18848990006829B1 /* YSViewController.m */,
+				B0E93D7C18848990006829B1 /* Images.xcassets */,
+				B0E93D6818848990006829B1 /* Supporting Files */,
+			);
+			path = YSRosterApp;
+			sourceTree = "<group>";
+		};
+		B0E93D6818848990006829B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B0E93D6918848990006829B1 /* YSRosterApp-Info.plist */,
+				B0E93D6A18848990006829B1 /* InfoPlist.strings */,
+				B0E93D6D18848990006829B1 /* main.m */,
+				B0E93D6F18848990006829B1 /* YSRosterApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0E93D8918848990006829B1 /* YSRosterAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				B0E93D8F18848990006829B1 /* YSRosterAppTests.m */,
+				B0E93D8A18848990006829B1 /* Supporting Files */,
+			);
+			path = YSRosterAppTests;
+			sourceTree = "<group>";
+		};
+		B0E93D8A18848990006829B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B0E93D8B18848990006829B1 /* YSRosterAppTests-Info.plist */,
+				B0E93D8C18848990006829B1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B0E93D5D18848990006829B1 /* YSRosterApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0E93D9318848990006829B1 /* Build configuration list for PBXNativeTarget "YSRosterApp" */;
+			buildPhases = (
+				B0E93D5A18848990006829B1 /* Sources */,
+				B0E93D5B18848990006829B1 /* Frameworks */,
+				B0E93D5C18848990006829B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YSRosterApp;
+			productName = YSRosterApp;
+			productReference = B0E93D5E18848990006829B1 /* YSRosterApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B0E93D8118848990006829B1 /* YSRosterAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0E93D9618848990006829B1 /* Build configuration list for PBXNativeTarget "YSRosterAppTests" */;
+			buildPhases = (
+				B0E93D7E18848990006829B1 /* Sources */,
+				B0E93D7F18848990006829B1 /* Frameworks */,
+				B0E93D8018848990006829B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B0E93D8818848990006829B1 /* PBXTargetDependency */,
+			);
+			name = YSRosterAppTests;
+			productName = YSRosterAppTests;
+			productReference = B0E93D8218848990006829B1 /* YSRosterAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B0E93D561884898F006829B1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = YS;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "The 2 Handed Consortium";
+				TargetAttributes = {
+					B0E93D8118848990006829B1 = {
+						TestTargetID = B0E93D5D18848990006829B1;
+					};
+				};
+			};
+			buildConfigurationList = B0E93D591884898F006829B1 /* Build configuration list for PBXProject "YSRosterApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B0E93D551884898F006829B1;
+			productRefGroup = B0E93D5F18848990006829B1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B0E93D5D18848990006829B1 /* YSRosterApp */,
+				B0E93D8118848990006829B1 /* YSRosterAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B0E93D5C18848990006829B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0E93D7818848990006829B1 /* Main_iPad.storyboard in Resources */,
+				B0E93D7D18848990006829B1 /* Images.xcassets in Resources */,
+				B0E93D7518848990006829B1 /* Main_iPhone.storyboard in Resources */,
+				B0E93D6C18848990006829B1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0E93D8018848990006829B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0E93D8E18848990006829B1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B0E93D5A18848990006829B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0E93D7B18848990006829B1 /* YSViewController.m in Sources */,
+				B0E93D7218848990006829B1 /* YSAppDelegate.m in Sources */,
+				B0E93D6E18848990006829B1 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0E93D7E18848990006829B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0E93D9018848990006829B1 /* YSRosterAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B0E93D8818848990006829B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B0E93D5D18848990006829B1 /* YSRosterApp */;
+			targetProxy = B0E93D8718848990006829B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B0E93D6A18848990006829B1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B0E93D6B18848990006829B1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B0E93D7318848990006829B1 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B0E93D7418848990006829B1 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		B0E93D7618848990006829B1 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B0E93D7718848990006829B1 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		B0E93D8C18848990006829B1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B0E93D8D18848990006829B1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B0E93D9118848990006829B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B0E93D9218848990006829B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B0E93D9418848990006829B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YSRosterApp/YSRosterApp-Prefix.pch";
+				INFOPLIST_FILE = "YSRosterApp/YSRosterApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B0E93D9518848990006829B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YSRosterApp/YSRosterApp-Prefix.pch";
+				INFOPLIST_FILE = "YSRosterApp/YSRosterApp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B0E93D9718848990006829B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/YSRosterApp.app/YSRosterApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YSRosterApp/YSRosterApp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "YSRosterAppTests/YSRosterAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		B0E93D9818848990006829B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/YSRosterApp.app/YSRosterApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "YSRosterApp/YSRosterApp-Prefix.pch";
+				INFOPLIST_FILE = "YSRosterAppTests/YSRosterAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B0E93D591884898F006829B1 /* Build configuration list for PBXProject "YSRosterApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0E93D9118848990006829B1 /* Debug */,
+				B0E93D9218848990006829B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0E93D9318848990006829B1 /* Build configuration list for PBXNativeTarget "YSRosterApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0E93D9418848990006829B1 /* Debug */,
+				B0E93D9518848990006829B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B0E93D9618848990006829B1 /* Build configuration list for PBXNativeTarget "YSRosterAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0E93D9718848990006829B1 /* Debug */,
+				B0E93D9818848990006829B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B0E93D561884898F006829B1 /* Project object */;
+}
