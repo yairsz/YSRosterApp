@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YSTableViewDataSource.h"
+#import "YSPerson.h"
 
-@interface YSViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
-@property (strong, nonatomic) NSString * selectedPerson;
+@interface YSViewController : UIViewController <UITableViewDelegate>
+@property (strong, nonatomic) YSPerson * selectedPerson;
+@property (strong, nonatomic) YSTableViewDataSource * dataSource;
 
 @end

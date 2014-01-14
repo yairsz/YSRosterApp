@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B00EA8441885E05C0029848C /* Bootcamp.plist in Resources */ = {isa = PBXBuildFile; fileRef = B00EA8431885E05C0029848C /* Bootcamp.plist */; };
+		B00EA8471885E0910029848C /* YSPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = B00EA8461885E0910029848C /* YSPerson.m */; };
+		B00EA84A1885E3810029848C /* YSTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B00EA8491885E3810029848C /* YSTableViewDataSource.m */; };
 		B0E93D6218848990006829B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6118848990006829B1 /* Foundation.framework */; };
 		B0E93D6418848990006829B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6318848990006829B1 /* CoreGraphics.framework */; };
 		B0E93D6618848990006829B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6518848990006829B1 /* UIKit.framework */; };
@@ -36,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B00EA8431885E05C0029848C /* Bootcamp.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Bootcamp.plist; sourceTree = "<group>"; };
+		B00EA8451885E0910029848C /* YSPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSPerson.h; sourceTree = "<group>"; };
+		B00EA8461885E0910029848C /* YSPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSPerson.m; sourceTree = "<group>"; };
+		B00EA8481885E3810029848C /* YSTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTableViewDataSource.h; sourceTree = "<group>"; };
+		B00EA8491885E3810029848C /* YSTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTableViewDataSource.m; sourceTree = "<group>"; };
 		B0E93D5E18848990006829B1 /* YSRosterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSRosterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E93D6118848990006829B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B0E93D6318848990006829B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,6 +125,10 @@
 		B0E93D6718848990006829B1 /* YSRosterApp */ = {
 			isa = PBXGroup;
 			children = (
+				B00EA8451885E0910029848C /* YSPerson.h */,
+				B00EA8461885E0910029848C /* YSPerson.m */,
+				B00EA8481885E3810029848C /* YSTableViewDataSource.h */,
+				B00EA8491885E3810029848C /* YSTableViewDataSource.m */,
 				B0E93D7018848990006829B1 /* YSAppDelegate.h */,
 				B0E93D7118848990006829B1 /* YSAppDelegate.m */,
 				B0E93D7318848990006829B1 /* Main_iPhone.storyboard */,
@@ -134,6 +146,7 @@
 		B0E93D6818848990006829B1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B00EA8431885E05C0029848C /* Bootcamp.plist */,
 				B0E93D6918848990006829B1 /* YSRosterApp-Info.plist */,
 				B0E93D6A18848990006829B1 /* InfoPlist.strings */,
 				B0E93D6D18848990006829B1 /* main.m */,
@@ -240,6 +253,7 @@
 				B0E93D7818848990006829B1 /* Main_iPad.storyboard in Resources */,
 				B0E93D7D18848990006829B1 /* Images.xcassets in Resources */,
 				B0E93D7518848990006829B1 /* Main_iPhone.storyboard in Resources */,
+				B00EA8441885E05C0029848C /* Bootcamp.plist in Resources */,
 				B0E93D6C18848990006829B1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,7 +273,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B00EA84A1885E3810029848C /* YSTableViewDataSource.m in Sources */,
 				B0E93D7B18848990006829B1 /* YSViewController.m in Sources */,
+				B00EA8471885E0910029848C /* YSPerson.m in Sources */,
 				B0E93D9B18849899006829B1 /* YSDetailViewController.m in Sources */,
 				B0E93D7218848990006829B1 /* YSAppDelegate.m in Sources */,
 				B0E93D6E18848990006829B1 /* main.m in Sources */,
@@ -481,6 +497,7 @@
 				B0E93D9518848990006829B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B0E93D9618848990006829B1 /* Build configuration list for PBXNativeTarget "YSRosterAppTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +506,7 @@
 				B0E93D9818848990006829B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

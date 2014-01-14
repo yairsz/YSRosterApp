@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YSPerson.h"
 
 @interface YSDetailViewController : UIViewController
-@property (strong, nonatomic) NSString * selectedPerson;
+@property (strong, nonatomic) YSPerson * selectedPerson;
 
 @end

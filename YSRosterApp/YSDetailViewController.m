@@ -20,7 +20,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.nameLabel.text = self.selectedPerson;
+    self.nameLabel.text = self.selectedPerson.name;
 }
 
 - (void)didReceiveMemoryWarning
