@@ -9,9 +9,11 @@
 #import "YSViewController.h"
 #import "YSDetailViewController.h"
 #import "YSTableViewDataSource.h"
+#import <CoreMotion/CoreMotion.h>
 
 @interface YSViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property BOOL lastSort;
 
 @end
 
@@ -27,10 +29,11 @@
     self.tableView.delegate = self;
     self.dataSource = [[YSTableViewDataSource alloc] initWithTableView:self.tableView];
     
-    
+    //this sets up the refresh control
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(refreshTableView:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refresh];
+    self.title = @"Shake to sort";
     
 }
 
@@ -46,6 +49,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // change the arrays properties in this controller to be later used on the destination view controller
     switch (indexPath.section) {
         case 1:
             self.selectedPerson = [self.dataSource.teachersArray objectAtIndex:indexPath.row];
@@ -54,9 +58,11 @@
             self.selectedPerson = [self.dataSource.studentsArray  objectAtIndex:indexPath.row];
             break;
     }
+    
     [self performSegueWithIdentifier:@"tableToPerson" sender:self];
     
 }
+
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -68,6 +74,7 @@
 
 - (void) refreshTableView: (UIRefreshControl *) refreshControl
 {
+    
     [refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Refreshing"]];
     [refreshControl endRefreshing];
     
@@ -75,9 +82,25 @@
 
 
 
+#pragma - mark Shake Gesture
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
 
 
-
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake)
+    {
+        //The sort decriptor is created in the view controller to be able to remember what was the last sort order. This is User dpendent and the data model should not concern itslef with it.
+        NSSortDescriptor * sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:!self.lastSort];
+        [self.dataSource sortTableViewWithSortDescriptor:sortDescriptor];
+        self.lastSort = !self.lastSort;
+        
+    }
+}
 
 
 

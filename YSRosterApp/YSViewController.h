@@ -10,7 +10,7 @@
 #import "YSTableViewDataSource.h"
 #import "YSPerson.h"
 
-@interface YSViewController : UIViewController <UITableViewDelegate>
+@interface YSViewController : UIViewController <UITableViewDelegate, UIActionSheetDelegate>
 @property (strong, nonatomic) YSPerson * selectedPerson;
 @property (strong, nonatomic) YSTableViewDataSource * dataSource;
 

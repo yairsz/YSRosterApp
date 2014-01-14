@@ -9,6 +9,10 @@
 #import "YSTableViewDataSource.h"
 #import "YSPerson.h"
 
+@interface YSTableViewDataSource()
+
+
+@end
 
 @implementation YSTableViewDataSource
 
@@ -24,13 +28,12 @@
 
 - (NSMutableArray *) studentsArray
 {
+    //Lazy instatiation of the students array
+    
     if (!_studentsArray) {
         _studentsArray = [[NSMutableArray alloc] init];
         NSString* path = [[NSBundle mainBundle] pathForResource:@"Bootcamp" ofType:@"plist"];
         NSArray* array = [NSArray arrayWithContentsOfFile:path];
-        
-        NSLog(@" %@", array);
-        
         
         for (NSDictionary * personData in array) {
             if ([personData[@"role"] isEqualToString:@"Student"]) {
@@ -46,6 +49,8 @@
 
 - (NSMutableArray *) teachersArray
 {
+    //Lazy instatiation of the teachers array
+
     if (!_teachersArray) {
         _teachersArray = [[NSMutableArray alloc] init];
         NSString* path = [[NSBundle mainBundle] pathForResource:@"Bootcamp" ofType:@"plist"];
@@ -72,6 +77,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    // The first Section in the tableview is the teachers and the second is the students
     switch (section) {
         case 0:
             return @"STUDENTS";
@@ -87,6 +93,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    // the number of rows in each section depends on the number of persons
     switch (section) {
         case 0:
             return self.studentsArray.count;
@@ -114,6 +121,15 @@
     }
 }
 
+
+- (void) sortTableViewWithSortDescriptor:(NSSortDescriptor *) sortDescriptor
+{
+    //this method receives a sort descriptor and re-sorts the arrays
+    
+    self.studentsArray = (NSMutableArray *)[self.studentsArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+    self.teachersArray = (NSMutableArray *)[self.teachersArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+    [self.tableView reloadData];
+}
 
 
 @end

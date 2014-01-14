@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface YSPerson : NSObject
+
+//This is the model of a person, they can be Students or Teachers, this will be defined in the property role.
 
 @property (nonatomic) NSString * role;
 @property (nonatomic) NSString * name;
 @property (nonatomic) NSString * twitter;
 @property (nonatomic) NSString * github;
+@property (nonatomic) UIImage * image;
 
 - (YSPerson *) initWithRole:(NSString *) role andName: (NSString *) name;
 
