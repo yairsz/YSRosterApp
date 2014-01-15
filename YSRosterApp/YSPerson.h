@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface YSPerson : NSObject
+@interface YSPerson : NSObject <NSCoding>
 
 //This is the model of a person, they can be Students or Teachers, this will be defined in the property role.
 
@@ -17,7 +17,7 @@
 @property (nonatomic) NSString * name;
 @property (nonatomic) NSString * twitter;
 @property (nonatomic) NSString * github;
-@property (nonatomic) UIImage * image;
+@property (nonatomic) NSString * imagePath;
 
 - (YSPerson *) initWithRole:(NSString *) role andName: (NSString *) name;
 

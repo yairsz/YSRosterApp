@@ -19,4 +19,27 @@
     }
     return self;
 }
+
+- (id)initWithCoder:(NSCoder *) decoder {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    self.role = [decoder decodeObjectForKey:@"role"];
+    self.name = [decoder decodeObjectForKey:@"name"];
+    self.twitter = [decoder decodeObjectForKey:@"twitter"];
+    self.github = [decoder decodeObjectForKey:@"github"];
+    self.imagePath = [decoder decodeObjectForKey:@"imagePath"];
+
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:self.role forKey:@"role"];
+    [encoder encodeObject:self.name forKey:@"name"];
+    [encoder encodeObject:self.twitter forKey:@"twitter"];
+    [encoder encodeObject:self.github forKey:@"github"];
+    [encoder encodeObject:self.imagePath forKey:@"imagePath"];
+}
+
 @end

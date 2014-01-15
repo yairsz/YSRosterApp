@@ -8,9 +8,11 @@
 
 #import "YSTableViewDataSource.h"
 #import "YSPerson.h"
+#define STORE_FILE_NAME @"personsStore"
+
 
 @interface YSTableViewDataSource()
-
+@property (nonatomic) NSArray * plistDataArray;
 
 @end
 
@@ -22,9 +24,29 @@
         _tableView = tableView;
         _tableView.dataSource = self;
     }
-    
+
     return self;
 }
+
+- (NSArray * ) plistDataArray {
+    
+    //This setter method checks for presence of the database at path if it doesn't exist it will read from the plist file
+    
+    NSString * fullPath = [NSString pathWithComponents:@[[[self applicationDocumentsDirectory] path], STORE_FILE_NAME]];
+                           
+    BOOL isDir;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir]) {
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"Bootcamp" ofType:@"plist"];
+        _plistDataArray = [NSArray arrayWithContentsOfFile:path];
+        [NSKeyedArchiver archiveRootObject:_plistDataArray toFile:fullPath];
+    } else {
+        _plistDataArray = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
+    }
+    
+    
+    return _plistDataArray;
+}
+
 
 - (NSMutableArray *) studentsArray
 {
@@ -32,10 +54,9 @@
     
     if (!_studentsArray) {
         _studentsArray = [[NSMutableArray alloc] init];
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"Bootcamp" ofType:@"plist"];
-        NSArray* array = [NSArray arrayWithContentsOfFile:path];
         
-        for (NSDictionary * personData in array) {
+        
+        for (NSDictionary * personData in self.plistDataArray) {
             if ([personData[@"role"] isEqualToString:@"Student"]) {
             
                 YSPerson * person = [[YSPerson alloc] initWithRole:personData[@"role"] andName:personData[@"name"]];
@@ -44,6 +65,7 @@
             }
         }
     }
+
     return _studentsArray;
 }
 
@@ -53,11 +75,10 @@
 
     if (!_teachersArray) {
         _teachersArray = [[NSMutableArray alloc] init];
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"Bootcamp" ofType:@"plist"];
-        NSArray* array = [NSArray arrayWithContentsOfFile:path];
         
         
-        for (NSDictionary * personData in array) {
+        
+        for (NSDictionary * personData in self.plistDataArray) {
             if ([personData[@"role"] isEqualToString:@"Teacher"]) {
                 YSPerson * person = [[YSPerson alloc] initWithRole:personData[@"role"] andName:personData[@"name"]];
                 [_teachersArray addObject:person];
@@ -131,5 +152,9 @@
     [self.tableView reloadData];
 }
 
-
+- (NSURL *) applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+    
 @end
