@@ -10,6 +10,7 @@
 		B00EA8441885E05C0029848C /* Bootcamp.plist in Resources */ = {isa = PBXBuildFile; fileRef = B00EA8431885E05C0029848C /* Bootcamp.plist */; };
 		B00EA8471885E0910029848C /* YSPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = B00EA8461885E0910029848C /* YSPerson.m */; };
 		B00EA84A1885E3810029848C /* YSTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B00EA8491885E3810029848C /* YSTableViewDataSource.m */; };
+		B0C12D1E1887419C00F6AC6B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0C12D1D1887419C00F6AC6B /* AssetsLibrary.framework */; };
 		B0E93D6218848990006829B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6118848990006829B1 /* Foundation.framework */; };
 		B0E93D6418848990006829B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6318848990006829B1 /* CoreGraphics.framework */; };
 		B0E93D6618848990006829B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6518848990006829B1 /* UIKit.framework */; };
@@ -44,6 +45,7 @@
 		B00EA8461885E0910029848C /* YSPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSPerson.m; sourceTree = "<group>"; };
 		B00EA8481885E3810029848C /* YSTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTableViewDataSource.h; sourceTree = "<group>"; };
 		B00EA8491885E3810029848C /* YSTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTableViewDataSource.m; sourceTree = "<group>"; };
+		B0C12D1D1887419C00F6AC6B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		B0E93D5E18848990006829B1 /* YSRosterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSRosterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E93D6118848990006829B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B0E93D6318848990006829B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -73,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0C12D1E1887419C00F6AC6B /* AssetsLibrary.framework in Frameworks */,
 				B0E93D6418848990006829B1 /* CoreGraphics.framework in Frameworks */,
 				B0E93D6618848990006829B1 /* UIKit.framework in Frameworks */,
 				B0E93D6218848990006829B1 /* Foundation.framework in Frameworks */,
@@ -114,6 +117,7 @@
 		B0E93D6018848990006829B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0C12D1D1887419C00F6AC6B /* AssetsLibrary.framework */,
 				B0E93D6118848990006829B1 /* Foundation.framework */,
 				B0E93D6318848990006829B1 /* CoreGraphics.framework */,
 				B0E93D6518848990006829B1 /* UIKit.framework */,

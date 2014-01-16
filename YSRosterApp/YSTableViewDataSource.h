@@ -12,11 +12,13 @@
 
 // This class removes the Data source protocol from the UIViewController to enforce the MVC design Pattern. This would be the Model part of it.
 
-@property (nonatomic) NSMutableArray * studentsArray;
+@property (nonatomic) NSMutableArray * studentsArray, * personsArray;
 @property (nonatomic) NSMutableArray * teachersArray;
+
 @property (weak, nonatomic) UITableView * tableView;
 
 - (YSTableViewDataSource *) initWithTableView: (UITableView *) tableView;
 - (void) sortTableViewWithSortDescriptor:(NSSortDescriptor *) sortDescriptor;
+- (void) saveData;
 
 @end

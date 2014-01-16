@@ -37,6 +37,14 @@
     
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -50,14 +58,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // change the arrays properties in this controller to be later used on the destination view controller
-    switch (indexPath.section) {
-        case 1:
-            self.selectedPerson = [self.dataSource.teachersArray objectAtIndex:indexPath.row];
-            break;
-        default:
-            self.selectedPerson = [self.dataSource.studentsArray  objectAtIndex:indexPath.row];
-            break;
-    }
+    NSString * matchString = indexPath.section == 0 ? @"Student" : @"Teacher";
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"role MATCHES %@", matchString];
+    NSArray * filteredArray = [self.dataSource.personsArray filteredArrayUsingPredicate:predicate];
+    self.selectedPerson = [filteredArray objectAtIndex:indexPath.row];
     
     [self performSegueWithIdentifier:@"tableToPerson" sender:self];
     
@@ -68,6 +72,7 @@
 {
     YSDetailViewController * detailController = segue.destinationViewController;
     detailController.selectedPerson = self.selectedPerson;
+    detailController.dataSource = self.dataSource;
     
 }
 

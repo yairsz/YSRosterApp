@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "YSPerson.h"
+#import "YSTableViewDataSource.h"
 
-@interface YSDetailViewController : UIViewController
-@property (strong, nonatomic) YSPerson * selectedPerson;
+
+@interface YSDetailViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate,UIAlertViewDelegate>
+@property (weak, nonatomic) YSPerson * selectedPerson;
+@property (weak, nonatomic) YSTableViewDataSource * dataSource;
 
 @end

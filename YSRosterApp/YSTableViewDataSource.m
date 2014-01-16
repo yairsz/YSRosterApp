@@ -12,7 +12,6 @@
 
 
 @interface YSTableViewDataSource()
-@property (nonatomic) NSArray * plistDataArray;
 
 @end
 
@@ -28,66 +27,44 @@
     return self;
 }
 
-- (NSArray * ) plistDataArray {
-    
-    //This setter method checks for presence of the database at path if it doesn't exist it will read from the plist file
-    
-    NSString * fullPath = [NSString pathWithComponents:@[[[self applicationDocumentsDirectory] path], STORE_FILE_NAME]];
-                           
-    BOOL isDir;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir]) {
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"Bootcamp" ofType:@"plist"];
-        _plistDataArray = [NSArray arrayWithContentsOfFile:path];
-        [NSKeyedArchiver archiveRootObject:_plistDataArray toFile:fullPath];
-    } else {
-        _plistDataArray = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
-    }
-    
-    
-    return _plistDataArray;
-}
 
 
-- (NSMutableArray *) studentsArray
+
+
+- (NSMutableArray *) personsArray
 {
-    //Lazy instatiation of the students array
+    //This setter method checks for presence of the database at path. If it doesn't exist it will read from the plist file.
     
-    if (!_studentsArray) {
-        _studentsArray = [[NSMutableArray alloc] init];
+    if (!_personsArray) {
         
+        _personsArray = [[NSMutableArray alloc] init]; //initialize the array
         
-        for (NSDictionary * personData in self.plistDataArray) {
-            if ([personData[@"role"] isEqualToString:@"Student"]) {
+        BOOL isDir;
+        NSArray * plistDataArray;
+        
+        //Check existance of the persons array at the store path, read data from plist if it doesn't exist
+        if (![[NSFileManager defaultManager] fileExistsAtPath:[self pathToStore] isDirectory:&isDir]) {
+            NSString* path = [[NSBundle mainBundle] pathForResource:@"Bootcamp" ofType:@"plist"];
+            plistDataArray = [NSArray arrayWithContentsOfFile:path];
+            for (NSDictionary * personData in plistDataArray) {
+                YSPerson * person = [[YSPerson alloc] initWithRole:personData[@"role"] andName:personData[@"name"]];
+                [_personsArray addObject:person];
+            }
+            //The firs time this data is initialized, the array must be directly archived because the property hasn't been set yet.
+            [NSKeyedArchiver archiveRootObject:_personsArray toFile:[self pathToStore]];
             
-                YSPerson * person = [[YSPerson alloc] initWithRole:personData[@"role"] andName:personData[@"name"]];
-                
-                [_studentsArray addObject:person];
-            }
+        } else {
+            _personsArray = [NSKeyedUnarchiver unarchiveObjectWithFile:[self pathToStore]];
         }
     }
-
-    return _studentsArray;
+    
+    return _personsArray;
 }
 
-- (NSMutableArray *) teachersArray
+- (void) saveData
 {
-    //Lazy instatiation of the teachers array
-
-    if (!_teachersArray) {
-        _teachersArray = [[NSMutableArray alloc] init];
-        
-        
-        
-        for (NSDictionary * personData in self.plistDataArray) {
-            if ([personData[@"role"] isEqualToString:@"Teacher"]) {
-                YSPerson * person = [[YSPerson alloc] initWithRole:personData[@"role"] andName:personData[@"name"]];
-                [_teachersArray addObject:person];
-            }
-        }
-    }
-    return _teachersArray;
+    [NSKeyedArchiver archiveRootObject:self.personsArray toFile:[self pathToStore]];
 }
-
 
 #pragma mark - UITableViewDataSource
 
@@ -95,6 +72,7 @@
 {
     return 2;
 }
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -112,34 +90,63 @@
     }
 }
 
+
+- (NSInteger)numberOfStudents
+{
+    NSInteger studentCount = 0;
+    for (YSPerson * person  in self.personsArray) {
+        if ([person.role isEqualToString:@"Student"]) {
+            studentCount ++;
+        }
+    }
+    return studentCount;
+    
+}
+
+- (NSInteger)numberOfTeachers
+{
+    NSInteger teacherCount = 0;
+    for (YSPerson * person  in self.personsArray) {
+        if ([person.role isEqualToString:@"Teacher"]) {
+            teacherCount ++;
+        }
+    }
+    return teacherCount;
+    
+}
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // the number of rows in each section depends on the number of persons
     switch (section) {
         case 0:
-            return self.studentsArray.count;
-            break;
+            return [self numberOfStudents];
         case 1:
-            return self.teachersArray.count;
-            break;
+            return [self numberOfTeachers];
         default:
             return 0;
-            break;
     }
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell = [self.tableView dequeueReusableCellWithIdentifier:@"aCell" forIndexPath:indexPath];
+    NSString * matchString = indexPath.section == 0 ? @"Student" : @"Teacher";
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"role MATCHES %@", matchString];
     
-    switch (indexPath.section) {
-        case 1:
-            cell.textLabel.text = [[[self teachersArray] objectAtIndex:indexPath.row] name];
-            return cell;
-        default:
-            cell.textLabel.text = [[[self studentsArray] objectAtIndex:indexPath.row] name];
-            return cell;
-    }
+    NSArray * filteredArray = [self.personsArray filteredArrayUsingPredicate:predicate];
+    YSPerson * personForCell = [filteredArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = personForCell.name;
+    UIImage * image = [UIImage imageWithContentsOfFile:personForCell.imagePath];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    cell.accessoryView = imageView;
+    [imageView setBounds:CGRectMake(imageView.bounds.origin.x, imageView.bounds.origin.y, 40, 40)];
+    imageView.layer.cornerRadius = imageView.bounds.size.width / 2;
+    imageView.clipsToBounds = YES;
+    
+    
+    return cell;
 }
 
 
@@ -147,8 +154,7 @@
 {
     //this method receives a sort descriptor and re-sorts the arrays
     
-    self.studentsArray = (NSMutableArray *)[self.studentsArray sortedArrayUsingDescriptors:@[sortDescriptor]];
-    self.teachersArray = (NSMutableArray *)[self.teachersArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+    self.personsArray = (NSMutableArray *)[self.personsArray sortedArrayUsingDescriptors:@[sortDescriptor]];
     [self.tableView reloadData];
 }
 
@@ -156,5 +162,12 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
-    
+     
+- (NSString *) pathToStore
+{
+    //First, get the full path to the persons store
+    NSString * fullPath = [NSString pathWithComponents:@[[[self applicationDocumentsDirectory] path], STORE_FILE_NAME]];
+    return fullPath;
+}
+
 @end
