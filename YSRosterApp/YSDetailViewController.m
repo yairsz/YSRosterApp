@@ -34,6 +34,8 @@
         self.photoMessageLabel.hidden = YES;
     }
     
+    [self.nameTextField setEnabled:NO];
+    
     
     //turn the image into a circle
     self.faceImageView.layer.cornerRadius = self.faceImageView.bounds.size.width / 2;

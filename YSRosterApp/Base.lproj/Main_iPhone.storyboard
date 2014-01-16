@@ -90,7 +90,7 @@
                                 <rect key="frame" x="20" y="422" width="280" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="twitter" keyboardAppearance="light"/>
                                 <connections>
                                     <outlet property="delegate" destination="4gW-ux-RIc" id="XDs-UL-kJs"/>
                                 </connections>
@@ -99,7 +99,7 @@
                                 <rect key="frame" x="20" y="470" width="280" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="URL" keyboardAppearance="light"/>
                                 <connections>
                                     <outlet property="delegate" destination="4gW-ux-RIc" id="fFF-gE-mkq"/>
                                 </connections>
