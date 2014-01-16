@@ -16,8 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *githubTextField;
 @property (weak, nonatomic) IBOutlet UILabel *photoMessageLabel;
 
-@property BOOL isEditingText;
-
 @end
 
 @implementation YSDetailViewController
@@ -31,12 +29,15 @@
     self.nameTextField.text = self.selectedPerson.name;
     self.twitterTextField.text = self.selectedPerson.twitter;
     self.githubTextField.text = self.selectedPerson.github;
-    self.faceImageView.image = [UIImage imageWithContentsOfFile:self.selectedPerson.imagePath];
+    if (self.selectedPerson.imagePath) {
+        self.faceImageView.image = [UIImage imageWithContentsOfFile:self.selectedPerson.imagePath];
+        self.photoMessageLabel.hidden = YES;
+    }
+    
     
     //turn the image into a circle
     self.faceImageView.layer.cornerRadius = self.faceImageView.bounds.size.width / 2;
     self.faceImageView.clipsToBounds = YES;
-    self.isEditingText = NO;
     
 }
 
@@ -169,30 +170,33 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    
-    if (!self.isEditingText){
+
     //move the view up so we can see the text fields we are editing
     [UIView animateWithDuration:0.4 animations:^{
         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 210.f, self.view.frame.size.width, self.view.frame.size.height);
     }];
-    }
-    //This bool is set because touching another textfield will make the view jump unnecesarily
-    self.isEditingText = YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
     //move the view down to its normal state
     [UIView animateWithDuration:0.4 animations:^{
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 210.f, self.view.frame.size.width, self.view.frame.size.height);
-    }];
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 210.f, self.view.frame.size.width, self.view.frame.size.height);
+        }];
+    
     if (textField == self.twitterTextField) {
         self.selectedPerson.twitter = textField.text;
         
-    } else if (textField ==self.githubTextField) {
-        self.selectedPerson.github = textField.text;
+    } else if (textField == self.githubTextField) {
+        NSString *text;
+        if ([textField.text hasPrefix:@"http://github.com/"]){
+            text = textField.text;
+        } else if (textField.text.length > 0){
+            text = [NSString stringWithFormat:@"http://github.com/%@",textField.text];
+        }
+        self.selectedPerson.github = text;
+        textField.text = text;
     }
-    self.isEditingText = NO;
     [self.dataSource saveData];
 }
 
