@@ -13,6 +13,7 @@
 		B087302418888B8E00CE49E8 /* Assignment4.txt in Resources */ = {isa = PBXBuildFile; fileRef = B087302318888B8E00CE49E8 /* Assignment4.txt */; };
 		B087302718888C1F00CE49E8 /* YSViewControllerForAssingment.m in Sources */ = {isa = PBXBuildFile; fileRef = B087302618888C1F00CE49E8 /* YSViewControllerForAssingment.m */; };
 		B08730291888941600CE49E8 /* colorwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = B08730281888941600CE49E8 /* colorwheel.png */; };
+		B087302C1888B55D00CE49E8 /* YSScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B087302B1888B55D00CE49E8 /* YSScrollViewController.m */; };
 		B0C12D1E1887419C00F6AC6B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0C12D1D1887419C00F6AC6B /* AssetsLibrary.framework */; };
 		B0E93D6218848990006829B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6118848990006829B1 /* Foundation.framework */; };
 		B0E93D6418848990006829B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E93D6318848990006829B1 /* CoreGraphics.framework */; };
@@ -52,6 +53,8 @@
 		B087302518888C1F00CE49E8 /* YSViewControllerForAssingment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSViewControllerForAssingment.h; sourceTree = "<group>"; };
 		B087302618888C1F00CE49E8 /* YSViewControllerForAssingment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSViewControllerForAssingment.m; sourceTree = "<group>"; };
 		B08730281888941600CE49E8 /* colorwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorwheel.png; sourceTree = "<group>"; };
+		B087302A1888B55D00CE49E8 /* YSScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSScrollViewController.h; sourceTree = "<group>"; };
+		B087302B1888B55D00CE49E8 /* YSScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSScrollViewController.m; sourceTree = "<group>"; };
 		B0C12D1D1887419C00F6AC6B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		B0E93D5E18848990006829B1 /* YSRosterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YSRosterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0E93D6118848990006829B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +153,8 @@
 				B087302618888C1F00CE49E8 /* YSViewControllerForAssingment.m */,
 				B0E93D9918849899006829B1 /* YSDetailViewController.h */,
 				B0E93D9A18849899006829B1 /* YSDetailViewController.m */,
+				B087302A1888B55D00CE49E8 /* YSScrollViewController.h */,
+				B087302B1888B55D00CE49E8 /* YSScrollViewController.m */,
 				B087302318888B8E00CE49E8 /* Assignment4.txt */,
 				B0E93D7C18848990006829B1 /* Images.xcassets */,
 				B0E93D6818848990006829B1 /* Supporting Files */,
@@ -295,6 +300,7 @@
 				B00EA8471885E0910029848C /* YSPerson.m in Sources */,
 				B0E93D9B18849899006829B1 /* YSDetailViewController.m in Sources */,
 				B0E93D7218848990006829B1 /* YSAppDelegate.m in Sources */,
+				B087302C1888B55D00CE49E8 /* YSScrollViewController.m in Sources */,
 				B087302718888C1F00CE49E8 /* YSViewControllerForAssingment.m in Sources */,
 				B0E93D6E18848990006829B1 /* main.m in Sources */,
 			);

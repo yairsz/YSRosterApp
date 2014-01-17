@@ -7,7 +7,7 @@
 //
 
 #import "YSViewController.h"
-#import "YSDetailViewController.h"
+#import "YSScrollViewController.h"
 #import "YSTableViewDataSource.h"
 #import <CoreMotion/CoreMotion.h>
 
@@ -70,7 +70,7 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    YSDetailViewController * detailController = segue.destinationViewController;
+    YSScrollViewController * detailController = segue.destinationViewController;
     detailController.selectedPerson = self.selectedPerson;
     detailController.dataSource = self.dataSource;
     

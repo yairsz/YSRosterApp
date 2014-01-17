@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 The 2 Handed Consortium. All rights reserved.
 //
 
-#import "YSDetailViewController.h"
 #import "YSScrollViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface YSDetailViewController ()
+@interface YSScrollViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *faceImageView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *twitterTextField;
 @property (weak, nonatomic) IBOutlet UITextField *githubTextField;
 @property (weak, nonatomic) IBOutlet UILabel *photoMessageLabel;
 @property (weak, nonatomic) IBOutlet UIView *slidersView;
-
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) UITextField * activeField;
 
 @property (weak, nonatomic) IBOutlet UISlider *redSlider;
 @property (weak, nonatomic) IBOutlet UISlider *greenSlider;
@@ -28,11 +28,9 @@
 @property float greenValue;
 @property float blueValue;
 
-@property BOOL keyboardIsOut;
-
 @end
 
-@implementation YSDetailViewController
+@implementation YSScrollViewController
 
 #pragma mark - View Lifecycle
 
@@ -52,31 +50,49 @@
     
     [self hideSlidersView];
     
-    //turn the image into a circle
-    self.faceImageView.layer.cornerRadius = self.faceImageView.bounds.size.width / 2;
-    self.faceImageView.clipsToBounds = YES;
-    
+    //set background color from selected user
     self.redValue = [(NSNumber *)self.selectedPerson.rgbValues[0] floatValue];
     self.greenValue = [(NSNumber *)self.selectedPerson.rgbValues[1] floatValue];
     self.blueValue = [(NSNumber *)self.selectedPerson.rgbValues[2] floatValue];
     [self updateBackgroundColor];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        self.keyboardIsOut = YES;
-    }];
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        self.keyboardIsOut = NO;
-        [self resetView];
-    }];
+    //turn the image into a circle
+    self.faceImageView.layer.cornerRadius = self.faceImageView.bounds.size.width / 2;
+    self.faceImageView.clipsToBounds = YES;
+
+    //Run the Notification setup for the keyboard show
+    [self registerForKeyboardNotifications];
     
 }
 
+- (void) viewWillLayoutSubviews {
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    NSArray * rgbValues = @[[NSNumber numberWithFloat:self.redValue],
+                            [NSNumber numberWithFloat:self.greenValue],
+                            [NSNumber numberWithFloat:self.blueValue]];
+    self.selectedPerson.rgbValues = rgbValues;
+    [self.dataSource saveData];
+}
 
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeShown:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
 }
 
 
@@ -107,7 +123,9 @@
 }
 
 - (IBAction)tapColorWheel:(UIButton *)sender {
+    self.slidersView.hidden = NO;
     [self showSlidersView];
+    
 }
 - (IBAction)tapDoneSlidersButton:(UIButton *)sender {
     [self hideSlidersView];
@@ -116,25 +134,18 @@
                             [NSNumber numberWithFloat:self.blueValue]];
     self.selectedPerson.rgbValues = rgbValues;
     [self.dataSource saveData];
+    self.slidersView.hidden = YES;
 }
 
 
 -(void) hideSlidersView {
-    
-    [UIView animateWithDuration:0.8 animations:^{
-        CGRect rect = CGRectMake(0, self.view.frame.size.height, self.slidersView.frame.size.width,self.slidersView.frame.size.height);
-        self.slidersView.frame = rect;
-        
-    }];    
-    
+
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 -(void) showSlidersView {
-    self.slidersView.hidden = NO;
-    CGRect rect = CGRectMake(0, self.view.frame.size.height - self.slidersView.frame.size.height, self.slidersView.frame.size.width,self.slidersView.frame.size.height);
-    [UIView animateWithDuration:0.4 animations:^{
-        self.slidersView.frame = rect;
-    }];
+    [self.scrollView setContentOffset:CGPointMake(0, 0 + self.slidersView.frame.size.height) animated:YES];
+
 }
 
 - (IBAction)redSliderChanged:(UISlider *)sender {
@@ -161,16 +172,6 @@
     self.twitterTextField.textColor = reverseColor;
     self.githubTextField.textColor = reverseColor;
 }
-
-
-
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    YSScrollViewController * destinationController = (YSScrollViewController *) segue.destinationViewController;
-    destinationController.dataSource = self.dataSource;
-    destinationController.selectedPerson = self.selectedPerson;
-}
-
 #pragma mark - UIActionSheetDelegate
 
 -(void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -178,6 +179,7 @@
     UIImagePickerController * myPicker = [[UIImagePickerController alloc] init];
     myPicker.delegate = self;
     myPicker.allowsEditing = YES;
+    
     
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Camera"]) {
         myPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -196,6 +198,7 @@
             myPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
     } else {
+        self.photoMessageLabel.hidden = NO;
         return;
     }
     [self presentViewController:myPicker animated:YES completion:^{
@@ -265,15 +268,15 @@
     return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-
-    if (!self.keyboardIsOut) [self moveViewUp];
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activeField = textField;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
-    //move the view down to its normal state
-
+    self.activeField = nil;
+    
     if (textField == self.twitterTextField) {
         self.selectedPerson.twitter = textField.text;
         
@@ -291,19 +294,21 @@
     
 }
 
--(void) moveViewUp
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWillBeShown:(NSNotification*)aNotification
 {
-    //move the view up so we can see the text fields we are editing
-    [UIView animateWithDuration:0.4 animations:^{
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 210.f, self.view.frame.size.width, self.view.frame.size.height);
-    }];
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    //scroll so textviews are visible
+    [self.scrollView setContentOffset:CGPointMake(0, 0 + kbSize.height) animated:YES];
 }
 
--(void) resetView
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    [UIView animateWithDuration:0.4 animations:^{
-        self.view.frame = CGRectMake(self.view.frame.origin.x,0, self.view.frame.size.width, self.view.frame.size.height);
-    }];
+
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
