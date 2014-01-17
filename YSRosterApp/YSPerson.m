@@ -16,6 +16,7 @@
     if (self = [super init]) {
         _role = role;
         _name = name;
+        _rgbValues = @[@1.f,@1.f,@1.f];
     }
     return self;
 }
@@ -30,6 +31,7 @@
     self.twitter = [decoder decodeObjectForKey:@"twitter"];
     self.github = [decoder decodeObjectForKey:@"github"];
     self.imagePath = [decoder decodeObjectForKey:@"imagePath"];
+    self.rgbValues = [decoder decodeObjectForKey:@"rgbValues"];
 
     return self;
 }
@@ -40,6 +42,7 @@
     [encoder encodeObject:self.twitter forKey:@"twitter"];
     [encoder encodeObject:self.github forKey:@"github"];
     [encoder encodeObject:self.imagePath forKey:@"imagePath"];
+    [encoder encodeObject:self.rgbValues forKey:@"rgbValues"];
 }
 
 @end

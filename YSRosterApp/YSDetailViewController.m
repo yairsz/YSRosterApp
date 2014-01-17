@@ -15,6 +15,17 @@
 @property (weak, nonatomic) IBOutlet UITextField *twitterTextField;
 @property (weak, nonatomic) IBOutlet UITextField *githubTextField;
 @property (weak, nonatomic) IBOutlet UILabel *photoMessageLabel;
+@property (weak, nonatomic) IBOutlet UIView *slidersView;
+
+@property (weak, nonatomic) IBOutlet UISlider *redSlider;
+@property (weak, nonatomic) IBOutlet UISlider *greenSlider;
+@property (weak, nonatomic) IBOutlet UISlider *blueSlider;
+
+@property float redValue;
+@property float greenValue;
+@property float blueValue;
+
+@property BOOL keyboardIsOut;
 
 @end
 
@@ -36,10 +47,19 @@
     
     [self.nameTextField setEnabled:NO];
     
+    [self hideSlidersView];
     
     //turn the image into a circle
     self.faceImageView.layer.cornerRadius = self.faceImageView.bounds.size.width / 2;
     self.faceImageView.clipsToBounds = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardDidShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        self.keyboardIsOut = YES;
+    }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        self.keyboardIsOut = NO;
+        [self resetView];
+    }];
     
 }
 
@@ -52,7 +72,7 @@
 }
 
 
-#pragma mark - UIActionSheetDelegate
+#pragma mark - IBActions
 
 - (IBAction) doubleTapFace:(id)sender {
     
@@ -78,6 +98,62 @@
     }
 }
 
+- (IBAction)tapColorWheel:(UIButton *)sender {
+    [self showSlidersView];
+}
+- (IBAction)tapDoneSlidersButton:(UIButton *)sender {
+    [self hideSlidersView];
+    NSArray * rgbValues = @[[NSNumber numberWithFloat:self.redValue],
+                            [NSNumber numberWithFloat:self.greenValue],
+                            [NSNumber numberWithFloat:self.blueValue]];
+    self.selectedPerson.rgbValues = rgbValues;
+    [self.dataSource saveData];
+}
+
+
+-(void) hideSlidersView {
+    
+    [UIView animateWithDuration:0.8 animations:^{
+        CGRect rect = CGRectMake(0, self.view.frame.size.height, self.slidersView.frame.size.width,self.slidersView.frame.size.height);
+        self.slidersView.frame = rect;
+        
+    }];    
+    
+}
+
+-(void) showSlidersView {
+    self.slidersView.hidden = NO;
+    CGRect rect = CGRectMake(0, self.view.frame.size.height - self.slidersView.frame.size.height, self.slidersView.frame.size.width,self.slidersView.frame.size.height);
+    [UIView animateWithDuration:0.4 animations:^{
+        self.slidersView.frame = rect;
+    }];
+}
+
+- (IBAction)redSliderChanged:(UISlider *)sender {
+    self.redValue = sender.value;
+    [self updateBackgroundColor];
+}
+
+- (IBAction)greenSliderChanged:(UISlider *)sender {
+    self.greenValue = sender.value;
+    [self updateBackgroundColor];
+}
+
+- (IBAction)blueSliderChanged:(UISlider *)sender {
+    self.blueValue = sender.value;
+    [self updateBackgroundColor];
+}
+
+- (void) updateBackgroundColor
+{
+    self.view.backgroundColor = [UIColor colorWithRed:self.redValue green:self.greenValue blue:self.blueValue alpha:1];
+    //reverse colors for text
+    UIColor * reverseColor = [UIColor colorWithRed:1-self.redValue green:1-self.greenValue blue:1-self.blueValue alpha:1];
+    self.nameTextField.textColor = reverseColor;
+    self.twitterTextField.textColor = reverseColor;
+    self.githubTextField.textColor = reverseColor;
+}
+#pragma mark - UIActionSheetDelegate
 
 -(void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -173,19 +249,13 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
 
-    //move the view up so we can see the text fields we are editing
-    [UIView animateWithDuration:0.4 animations:^{
-        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 210.f, self.view.frame.size.width, self.view.frame.size.height);
-    }];
+    if (!self.keyboardIsOut) [self moveViewUp];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
     //move the view down to its normal state
-    [UIView animateWithDuration:0.4 animations:^{
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 210.f, self.view.frame.size.width, self.view.frame.size.height);
-        }];
-    
+
     if (textField == self.twitterTextField) {
         self.selectedPerson.twitter = textField.text;
         
@@ -200,6 +270,22 @@
         textField.text = text;
     }
     [self.dataSource saveData];
+    
+}
+
+-(void) moveViewUp
+{
+    //move the view up so we can see the text fields we are editing
+    [UIView animateWithDuration:0.4 animations:^{
+        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 210.f, self.view.frame.size.width, self.view.frame.size.height);
+    }];
+}
+
+-(void) resetView
+{
+    [UIView animateWithDuration:0.4 animations:^{
+        self.view.frame = CGRectMake(self.view.frame.origin.x,0, self.view.frame.size.width, self.view.frame.size.height);
+    }];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -211,7 +297,11 @@
             [control endEditing:YES];
         }
     }
+    
 }
 
 
+
+
+// 0 386 origin for slider view
 @end

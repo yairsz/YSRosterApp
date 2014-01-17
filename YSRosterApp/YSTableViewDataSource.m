@@ -131,20 +131,34 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //Figure out if section is student or teacher
     UITableViewCell * cell = [self.tableView dequeueReusableCellWithIdentifier:@"aCell" forIndexPath:indexPath];
     NSString * matchString = indexPath.section == 0 ? @"Student" : @"Teacher";
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"role MATCHES %@", matchString];
     
+    //setup an NSPredicate and filter the persons array
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"role MATCHES %@", matchString];
     NSArray * filteredArray = [self.personsArray filteredArrayUsingPredicate:predicate];
+    
+    //get person for indexpath in filtered array and set the cell label
     YSPerson * personForCell = [filteredArray objectAtIndex:indexPath.row];
     cell.textLabel.text = personForCell.name;
+    
+    //Add image to cell, if no ath is set will get set to nil
     UIImage * image = [UIImage imageWithContentsOfFile:personForCell.imagePath];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     cell.accessoryView = imageView;
+    
+    //Circular bounds for person image
     [imageView setBounds:CGRectMake(imageView.bounds.origin.x, imageView.bounds.origin.y, 40, 40)];
     imageView.layer.cornerRadius = imageView.bounds.size.width / 2;
     imageView.clipsToBounds = YES;
     
+    //Color of Row
+    CGFloat red = [(NSNumber *)personForCell.rgbValues[0] floatValue];
+    CGFloat green = [(NSNumber *)personForCell.rgbValues[1] floatValue];
+    CGFloat blue = [(NSNumber *)personForCell.rgbValues[2] floatValue];
+    cell.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
+    cell.textLabel.textColor = [UIColor colorWithRed:1-red green:1-green blue:1-blue alpha:1];
     
     return cell;
 }

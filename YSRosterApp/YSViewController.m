@@ -57,7 +57,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // change the arrays properties in this controller to be later used on the destination view controller
+    // This determines which cells will go to the teachers section and which ones to the students section
     NSString * matchString = indexPath.section == 0 ? @"Student" : @"Teacher";
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"role MATCHES %@", matchString];
     NSArray * filteredArray = [self.dataSource.personsArray filteredArrayUsingPredicate:predicate];

@@ -18,6 +18,7 @@
 @property (nonatomic) NSString * twitter;
 @property (nonatomic) NSString * github;
 @property (nonatomic) NSString * imagePath;
+@property (nonatomic) NSArray * rgbValues;
 
 - (YSPerson *) initWithRole:(NSString *) role andName: (NSString *) name;
 
