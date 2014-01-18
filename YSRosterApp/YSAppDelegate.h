@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YSTableViewDataSource.h"
 
 @interface YSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) YSTableViewDataSource * sharedDataSource;
+
 
 @end

@@ -11,6 +11,7 @@
 #import "YSTableViewDataSource.h"
 #import <CoreMotion/CoreMotion.h>
 
+
 @interface YSViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property BOOL lastSort;
@@ -27,13 +28,18 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.tableView.delegate = self;
-    self.dataSource = [[YSTableViewDataSource alloc] initWithTableView:self.tableView];
+    self.dataSource = [YSTableViewDataSource sharedDataSource];
+    self.dataSource.tableView = self.tableView;
+    self.tableView.dataSource = self.dataSource;
     
     //this sets up the refresh control
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(refreshTableView:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refresh];
-    self.title = @"Shake to sort";
+    self.title = @"iOS B9";
+    
+    UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openEmail)];
+    self.navigationItem.leftBarButtonItem = leftButton;
     
 }
 
@@ -107,10 +113,89 @@
     }
 }
 
+-(void) openEmail {
+    
+    MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+    [mailComposer setMailComposeDelegate:self];
+    if ([MFMailComposeViewController canSendMail]) {
+        
+        NSMutableString * messageBody = [[NSMutableString alloc] init];
+        [messageBody appendString:@"\n\n-------------Code Fellows 01/13 iOS Bootcamp Roster-------------\n\n"];
+        for (YSPerson * person in self.dataSource.personsArray) {
+            if (person.imagePath){
+                NSData * imageData = [NSData dataWithContentsOfFile:person.imagePath];
+                NSString * imageFileName = [NSString stringWithFormat:@"%@.jpg",person.name];
+                [mailComposer addAttachmentData:imageData mimeType:@"image/jpeg" fileName:imageFileName];
+            }
+            [messageBody appendString:@"\n"];
+            [messageBody appendString:person.name];
+            [messageBody appendString:@"\n"];
+            [messageBody appendString:person.role];
+            [messageBody appendString:@"\n"];
+            [messageBody appendString:@"Twitter:"];
+            if (person.twitter) [messageBody appendString:person.twitter];
+            [messageBody appendString:@"\n"];
+            [messageBody appendString:@"Github:"];
+            if (person.github) [messageBody appendString:person.github];
+            [messageBody appendString:@"\n"];
+            [messageBody appendString:@"\n"];
+            
+            
+        }
+        
+        
+        [mailComposer setSubject:@"Code Fellows 01/13 iOS Bootcamp Roster"];
+        [mailComposer setMessageBody:messageBody isHTML:NO];
+        [mailComposer setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+        [self presentViewController:mailComposer animated:YES completion:nil];
+    }
+}
+
+
+//Dismiss MFMail
+
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    if (result == MFMailComposeResultFailed) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Message failed to Send"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else if (result == MFMailComposeResultCancelled) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else if (result == MFMailComposeResultSaved) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Saved"
+                                                        message:@"Message was saved to your drafts folder"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else if (result == MFMailComposeResultSent) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+                                                        message:@"The Roster was sent to your email address."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+}
 
 
 
-
+- (NSString *) applicationDocumentsDirectory
+{
+    NSURL * docsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [docsURL path];
+}
 
 
 @end

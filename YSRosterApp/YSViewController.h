@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "YSTableViewDataSource.h"
 #import "YSPerson.h"
+#import <MessageUI/MessageUI.h>
 
-@interface YSViewController : UIViewController <UITableViewDelegate, UIActionSheetDelegate>
+@interface YSViewController : UIViewController <UITableViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) YSPerson * selectedPerson;
-@property (strong, nonatomic) YSTableViewDataSource * dataSource;
+@property (weak, nonatomic) YSTableViewDataSource * dataSource;
+
+- (void) openEmail;
+
+
 
 @end

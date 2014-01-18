@@ -10,6 +10,8 @@
 		B00EA8441885E05C0029848C /* Bootcamp.plist in Resources */ = {isa = PBXBuildFile; fileRef = B00EA8431885E05C0029848C /* Bootcamp.plist */; };
 		B00EA8471885E0910029848C /* YSPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = B00EA8461885E0910029848C /* YSPerson.m */; };
 		B00EA84A1885E3810029848C /* YSTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B00EA8491885E3810029848C /* YSTableViewDataSource.m */; };
+		B0192A6D1889EAEB00320661 /* YSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0192A6C1889EAEB00320661 /* YSTableViewCell.m */; };
+		B0192A6F188A03D600320661 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0192A6E188A03D600320661 /* MessageUI.framework */; };
 		B087302418888B8E00CE49E8 /* Assignment4.txt in Resources */ = {isa = PBXBuildFile; fileRef = B087302318888B8E00CE49E8 /* Assignment4.txt */; };
 		B087302718888C1F00CE49E8 /* YSViewControllerForAssingment.m in Sources */ = {isa = PBXBuildFile; fileRef = B087302618888C1F00CE49E8 /* YSViewControllerForAssingment.m */; };
 		B08730291888941600CE49E8 /* colorwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = B08730281888941600CE49E8 /* colorwheel.png */; };
@@ -49,6 +51,9 @@
 		B00EA8461885E0910029848C /* YSPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSPerson.m; sourceTree = "<group>"; };
 		B00EA8481885E3810029848C /* YSTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTableViewDataSource.h; sourceTree = "<group>"; };
 		B00EA8491885E3810029848C /* YSTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTableViewDataSource.m; sourceTree = "<group>"; };
+		B0192A6B1889EAEB00320661 /* YSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSTableViewCell.h; sourceTree = "<group>"; };
+		B0192A6C1889EAEB00320661 /* YSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSTableViewCell.m; sourceTree = "<group>"; };
+		B0192A6E188A03D600320661 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B087302318888B8E00CE49E8 /* Assignment4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Assignment4.txt; sourceTree = "<group>"; };
 		B087302518888C1F00CE49E8 /* YSViewControllerForAssingment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSViewControllerForAssingment.h; sourceTree = "<group>"; };
 		B087302618888C1F00CE49E8 /* YSViewControllerForAssingment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSViewControllerForAssingment.m; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0192A6F188A03D600320661 /* MessageUI.framework in Frameworks */,
 				B0C12D1E1887419C00F6AC6B /* AssetsLibrary.framework in Frameworks */,
 				B0E93D6418848990006829B1 /* CoreGraphics.framework in Frameworks */,
 				B0E93D6618848990006829B1 /* UIKit.framework in Frameworks */,
@@ -127,6 +133,7 @@
 		B0E93D6018848990006829B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0192A6E188A03D600320661 /* MessageUI.framework */,
 				B0C12D1D1887419C00F6AC6B /* AssetsLibrary.framework */,
 				B0E93D6118848990006829B1 /* Foundation.framework */,
 				B0E93D6318848990006829B1 /* CoreGraphics.framework */,
@@ -155,6 +162,8 @@
 				B0E93D9A18849899006829B1 /* YSDetailViewController.m */,
 				B087302A1888B55D00CE49E8 /* YSScrollViewController.h */,
 				B087302B1888B55D00CE49E8 /* YSScrollViewController.m */,
+				B0192A6B1889EAEB00320661 /* YSTableViewCell.h */,
+				B0192A6C1889EAEB00320661 /* YSTableViewCell.m */,
 				B087302318888B8E00CE49E8 /* Assignment4.txt */,
 				B0E93D7C18848990006829B1 /* Images.xcassets */,
 				B0E93D6818848990006829B1 /* Supporting Files */,
@@ -299,6 +308,7 @@
 				B0E93D7B18848990006829B1 /* YSViewController.m in Sources */,
 				B00EA8471885E0910029848C /* YSPerson.m in Sources */,
 				B0E93D9B18849899006829B1 /* YSDetailViewController.m in Sources */,
+				B0192A6D1889EAEB00320661 /* YSTableViewCell.m in Sources */,
 				B0E93D7218848990006829B1 /* YSAppDelegate.m in Sources */,
 				B087302C1888B55D00CE49E8 /* YSScrollViewController.m in Sources */,
 				B087302718888C1F00CE49E8 /* YSViewControllerForAssingment.m in Sources */,

@@ -12,15 +12,16 @@
 
 // This class removes the Data source protocol from the UIViewController to enforce the MVC design Pattern. This would be the Model part of it.
 
-// TODO: Change this class into a singleton that gets loaded from AppDelegate
-
 //Changed the two arrays for students and teachers from last version and made it so there is only one persons array
+
+//turned this class into a Singleton that gets initialized in the app delegate
 
 @property (nonatomic) NSMutableArray * personsArray;
 
 @property (weak, nonatomic) UITableView * tableView;
 
-- (YSTableViewDataSource *) initWithTableView: (UITableView *) tableView;
+//- (YSTableViewDataSource *) initWithTableView: (UITableView *) tableView;
++ (YSTableViewDataSource *) sharedDataSource;
 - (void) sortTableViewWithSortDescriptor:(NSSortDescriptor *) sortDescriptor;
 - (void) saveData;
 

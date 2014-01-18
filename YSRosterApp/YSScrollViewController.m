@@ -17,12 +17,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *photoMessageLabel;
 @property (weak, nonatomic) IBOutlet UIView *slidersView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIButton *pinWheelButton;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *photoGR;
 
 @property (weak, nonatomic) UITextField * activeField;
 
 @property (weak, nonatomic) IBOutlet UISlider *redSlider;
 @property (weak, nonatomic) IBOutlet UISlider *greenSlider;
 @property (weak, nonatomic) IBOutlet UISlider *blueSlider;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 @property float redValue;
 @property float greenValue;
@@ -50,6 +53,8 @@
     
     [self hideSlidersView];
     
+    self.title = self.selectedPerson.name;
+    
     //set background color from selected user
     self.redValue = [(NSNumber *)self.selectedPerson.rgbValues[0] floatValue];
     self.greenValue = [(NSNumber *)self.selectedPerson.rgbValues[1] floatValue];
@@ -62,6 +67,8 @@
 
     //Run the Notification setup for the keyboard show
     [self registerForKeyboardNotifications];
+    
+    self.scrollView.scrollEnabled = NO;
     
 }
 
@@ -134,18 +141,23 @@
                             [NSNumber numberWithFloat:self.blueValue]];
     self.selectedPerson.rgbValues = rgbValues;
     [self.dataSource saveData];
-    self.slidersView.hidden = YES;
 }
 
 
 -(void) hideSlidersView {
-
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    
+    //wait a second before hiding the sliders view credit http://stackoverflow.com/users/2087165/despotovic
+    double delayInSeconds = 0.5f;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.slidersView.hidden = YES;
+    });
 }
 
 -(void) showSlidersView {
     [self.scrollView setContentOffset:CGPointMake(0, 0 + self.slidersView.frame.size.height) animated:YES];
-
+    self.scrollView.scrollEnabled = NO;
 }
 
 - (IBAction)redSliderChanged:(UISlider *)sender {
@@ -171,6 +183,10 @@
     self.nameTextField.textColor = reverseColor;
     self.twitterTextField.textColor = reverseColor;
     self.githubTextField.textColor = reverseColor;
+    self.twitterTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Twitter" attributes:@{NSForegroundColorAttributeName: reverseColor}];
+    self.githubTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Github" attributes:@{NSForegroundColorAttributeName: reverseColor}];
+    [self.doneButton setTitleColor:reverseColor forState:UIControlStateNormal];
+    
 }
 #pragma mark - UIActionSheetDelegate
 
@@ -278,6 +294,12 @@
     self.activeField = nil;
     
     if (textField == self.twitterTextField) {
+//        NSString *text;
+//        if ([textField.text hasPrefix:@"@"]){
+//            text = textField.text;
+//        } else if (textField.text.length > 0){
+//            text = [NSString stringWithFormat:@"%@",textField.text];
+//        }
         self.selectedPerson.twitter = textField.text;
         
     } else if (textField == self.githubTextField) {
@@ -302,29 +324,34 @@
     
     //scroll so textviews are visible
     [self.scrollView setContentOffset:CGPointMake(0, 0 + kbSize.height) animated:YES];
+    
+    self.pinWheelButton.enabled = NO;
+    self.photoGR.enabled = NO;
+    self.scrollView.scrollEnabled = NO;
+    
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    
+    self.pinWheelButton.enabled = YES;
+    self.photoGR.enabled = YES;
+    
 }
 
+- (BOOL) canBecomeFirstResponder {
+    return NO;
+}
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //This is a gist by @johnnyclem https://gist.github.com/johnnyclem/8215415 well done!
-    
+//This is a gist by @johnnyclem https://gist.github.com/johnnyclem/8215415 well done!
     for (UIControl *control in self.view.subviews) {
         if ([control isKindOfClass:[UITextField class]]) {
             [control endEditing:YES];
         }
     }
-    
 }
 
-
-
-
-// 0 386 origin for slider view
 @end

@@ -12,7 +12,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // Initialize the shared Data Source
+    
+    self.sharedDataSource = [YSTableViewDataSource sharedDataSource];
+    
     return YES;
 }
 							
